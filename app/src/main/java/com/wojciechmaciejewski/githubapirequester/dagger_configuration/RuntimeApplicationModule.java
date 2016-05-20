@@ -10,6 +10,8 @@ import com.wojciechmaciejewski.githubapirequester.BuildConfig;
 import com.wojciechmaciejewski.githubapirequester.dagger_configuration.ApplicationModule;
 import com.wojciechmaciejewski.githubapirequester.dagger_configuration.DepedencyInjector;
 import com.wojciechmaciejewski.githubapirequester.dagger_configuration.RuntimeDepedencyInjector;
+import com.wojciechmaciejewski.githubapirequester.dagger_configuration.network.NetworkModule;
+import com.wojciechmaciejewski.githubapirequester.dagger_configuration.network.RuntimeNetworkModule;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,7 +23,7 @@ import dagger.Provides;
 /**
  *
  */
-@Module
+@Module(includes = RuntimeNetworkModule.class)
 public class RuntimeApplicationModule implements ApplicationModule {
 
     private App app;
