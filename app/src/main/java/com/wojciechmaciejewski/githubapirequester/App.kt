@@ -5,7 +5,7 @@ import android.app.Application
 /**
 
  */
-class App : Application(){
+open class App : Application(){
 
 
     override fun onCreate() {
