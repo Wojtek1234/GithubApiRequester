@@ -1,6 +1,6 @@
 package com.wojciechmaciejewski.githubapirequester.dagger_configuration
 
-import com.wojciechmaciejewski.githubapirequester.AskActivity
+import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.AskActivity
 
 /**
  *
