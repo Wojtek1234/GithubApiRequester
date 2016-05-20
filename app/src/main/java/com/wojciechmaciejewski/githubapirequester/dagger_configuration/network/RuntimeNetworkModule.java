@@ -1,6 +1,8 @@
 package com.wojciechmaciejewski.githubapirequester.dagger_configuration.network;
 
+import com.wojciechmaciejewski.githubapirequester.network.ApiProvider;
 import com.wojciechmaciejewski.githubapirequester.network.GithubApi;
+import com.wojciechmaciejewski.githubapirequester.network.GithubApiProvider;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -19,8 +21,6 @@ public class RuntimeNetworkModule implements NetworkModule {
     @Provides
     @Singleton
     public GithubApi provideGithubApi() {
-        return new GithubApi() {
-
-        };
+        return (new GithubApiProvider()).provideApi();
     }
 }
