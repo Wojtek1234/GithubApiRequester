@@ -8,6 +8,7 @@ import com.squareup.picasso.Picasso;
 import com.wojciechmaciejewski.githubapirequester.App;
 import com.wojciechmaciejewski.githubapirequester.BuildConfig;
 import com.wojciechmaciejewski.githubapirequester.dagger_configuration.network.RuntimeNetworkModule;
+import com.wojciechmaciejewski.githubapirequester.utils.MySchedulers;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +18,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import pl.stsg.e_learning.helpers.rxSchedulers.MySchedulers;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -69,6 +69,8 @@ public class RuntimeApplicationModule implements ApplicationModule {
 
     @NotNull
     @Override
+    @Provides
+    @Singleton
     public MySchedulers provideSchedulers() {
         return new MySchedulers(Schedulers.from(Executors.newFixedThreadPool(4)), AndroidSchedulers.mainThread());
     }

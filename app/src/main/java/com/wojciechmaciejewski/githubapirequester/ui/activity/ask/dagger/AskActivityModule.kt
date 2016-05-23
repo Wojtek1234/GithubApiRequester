@@ -2,7 +2,7 @@ package com.wojciechmaciejewski.githubapirequester.ui.activity.ask.dagger
 
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.Ask
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.AskModel
-import pl.stsg.e_learning.helpers.rxSchedulers.MySchedulers
+import com.wojciechmaciejewski.githubapirequester.utils.MySchedulers
 
 /**
  *

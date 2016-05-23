@@ -1,6 +1,6 @@
 package com.wojciechmaciejewski.githubapirequester.presenters.ask
 
-import pl.stsg.e_learning.helpers.rxSchedulers.MySchedulers
+import com.wojciechmaciejewski.githubapirequester.utils.MySchedulers
 import rx.Subscription
 
 /**

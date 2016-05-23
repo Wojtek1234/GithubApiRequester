@@ -4,12 +4,12 @@ import com.wojciechmaciejewski.githubapirequester.dagger_configuration.scopes.Ac
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.Ask;
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.AskModel;
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.AskPresenter;
+import com.wojciechmaciejewski.githubapirequester.utils.MySchedulers;
 
 import org.jetbrains.annotations.NotNull;
 
 import dagger.Module;
 import dagger.Provides;
-import pl.stsg.e_learning.helpers.rxSchedulers.MySchedulers;
 
 /**
  *

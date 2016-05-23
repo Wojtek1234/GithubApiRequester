@@ -1,6 +1,6 @@
-package pl.stsg.e_learning.helpers.rxSchedulers
+package com.wojciechmaciejewski.githubapirequester.utils
 
 import rx.Scheduler
 
 
-data class MySchedulers(val subscribeSchedulers: Scheduler,val observScheduler:Scheduler)
+data class MySchedulers(val subscribeSchedulers: Scheduler, val observScheduler: Scheduler)

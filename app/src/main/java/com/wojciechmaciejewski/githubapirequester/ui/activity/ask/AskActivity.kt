@@ -6,8 +6,14 @@ import com.wojciechmaciejewski.githubapirequester.R
 import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.Ask
 import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
+import javax.inject.Inject
 
 class AskActivity : AbstractActivity(), Ask.View {
+
+
+    @Inject
+    lateinit var presenter: Ask.Presenter
+
 
     override fun onInitializeInjection() {
         this.dependenciesInjector.inject(this)

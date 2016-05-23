@@ -3,10 +3,10 @@ package com.wojciechmaciejewski.githubapirequester.presenters.ask
 import com.wojciechmaciejewski.githubapirequester.UnitTest
 import com.wojciechmaciejewski.githubapirequester.createListOfAskElements
 import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
+import com.wojciechmaciejewski.githubapirequester.utils.MySchedulers
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
-import pl.stsg.e_learning.helpers.rxSchedulers.MySchedulers
 import rx.Observable
 import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject

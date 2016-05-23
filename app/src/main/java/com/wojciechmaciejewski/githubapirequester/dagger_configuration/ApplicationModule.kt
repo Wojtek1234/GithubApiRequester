@@ -3,7 +3,7 @@ package com.wojciechmaciejewski.githubapirequester.dagger_configuration
 import android.app.Application
 import android.content.SharedPreferences
 import com.squareup.picasso.Picasso
-import pl.stsg.e_learning.helpers.rxSchedulers.MySchedulers
+import com.wojciechmaciejewski.githubapirequester.utils.MySchedulers
 
 /**
  *
