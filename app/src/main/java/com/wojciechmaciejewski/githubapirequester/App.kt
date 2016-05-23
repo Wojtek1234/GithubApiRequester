@@ -1,11 +1,7 @@
 package com.wojciechmaciejewski.githubapirequester
 
 import android.app.Application
-import com.wojciechmaciejewski.githubapirequester.dagger_configuration.DaggerRuntimeApplicationComponent
-
-import com.wojciechmaciejewski.githubapirequester.dagger_configuration.DepedencyInjector
-import com.wojciechmaciejewski.githubapirequester.dagger_configuration.RuntimeApplicationComponent
-import com.wojciechmaciejewski.githubapirequester.dagger_configuration.RuntimeApplicationModule
+import com.wojciechmaciejewski.githubapirequester.dagger_configuration.*
 
 
 import javax.inject.Inject
@@ -32,6 +28,6 @@ open class App : Application() {
         applicationComponent.inject(this)
     }
 
-    fun provideDepedencyInjector() = depedencyInjector;
-    fun provideApplicationComponent() = applicationComponent
+    open fun provideDepedencyInjector(): DepedencyInjector = depedencyInjector;
+    open fun provideApplicationComponent(): ApplicationComponent = applicationComponent
 }
