@@ -3,10 +3,6 @@ package com.wojciechmaciejewski.githubapirequester.ui.activity.ask
 
 import android.os.Bundle
 import com.wojciechmaciejewski.githubapirequester.R
-import com.wojciechmaciejewski.githubapirequester.model.dto.AskElementInterface
-import com.wojciechmaciejewski.githubapirequester.model.dto.GithubRepoAskElement
-import com.wojciechmaciejewski.githubapirequester.model.network.GithubUser
-
 import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
 
 class AskActivity : AbstractActivity() {
