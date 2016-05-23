@@ -28,6 +28,11 @@ class AskPresenterTest : UnitTest() {
         val query = "pig"
         Mockito.`when`(model.getAskResult(query, null)).thenReturn(Observable.just(createListOfAskElements(query, 2)))
 
+        presenter.loadResults(query)
+        Mockito.verify(view).fillUpElements(createListOfAskElements(query, 2).sortedBy { it.id })
+        presenter.loadResults(query)
+        Mockito.verify(model).getAskResult(query, 2)
+
     }
 
     @Test

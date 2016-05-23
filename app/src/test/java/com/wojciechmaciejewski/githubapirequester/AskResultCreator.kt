@@ -17,5 +17,5 @@ fun createListOfRepos(name: String, size: Int) = (0..size - 1).map { GithubRepo(
 
 
 fun createListOfAskElements(name: String, size: Int): List<AskElement> {
-    return createListOfUser(name, size).map { GithubUserAskElement(it) } + createListOfRepos(name, size).map { GithubRepoAskElement(it) }
+    return createListOfRepos(name, size).map { GithubRepoAskElement(it) } + createListOfUser(name, size).map { GithubUserAskElement(it) }
 }
