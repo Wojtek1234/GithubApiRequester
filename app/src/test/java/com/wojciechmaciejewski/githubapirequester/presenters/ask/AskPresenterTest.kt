@@ -42,7 +42,7 @@ class AskPresenterTest : UnitTest() {
         val query = "pig"
         val subject: PublishSubject<List<AskElement>>
         subject = PublishSubject.create()
-        Mockito.`when`(model.getAskResult(query, Mockito.anyInt())).thenReturn(subject)
+        Mockito.`when`(model.getAskResult(Mockito.anyString(), Mockito.anyInt())).thenReturn(subject)
         presenter.loadResults(query)
         subject.onNext(createListOfAskElements(query, 1))
         Mockito.verify(view).fillUpElements(createListOfAskElements(query, 1).sortedBy { it.id })
