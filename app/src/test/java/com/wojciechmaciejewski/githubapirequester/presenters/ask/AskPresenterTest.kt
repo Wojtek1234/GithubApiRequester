@@ -28,13 +28,16 @@ class AskPresenterTest : UnitTest() {
     @Test
     fun testLoadResults() {
         val query = "pig"
+        val query2 = "pig2"
         Mockito.`when`(model.getAskResult(query, 1)).thenReturn(Observable.just(createListOfAskElements(query, 2)))
         Mockito.`when`(model.getAskResult(query, 2)).thenReturn(Observable.just(createListOfAskElements(query, 2)))
+        Mockito.`when`(model.getAskResult(query2, 1)).thenReturn(Observable.just(createListOfAskElements(query, 3)))
+        presenter.loadResults(query)
+        presenter.loadResults(query)
+        presenter.loadResults(query2)
+        Mockito.verify(view, Mockito.times(2)).fillUpElements(createListOfAskElements(query, 2).sortedBy { it.id })
+        Mockito.verify(view, Mockito.times(1)).fillUpElements(createListOfAskElements(query, 3).sortedBy { it.id })
 
-        presenter.loadResults(query)
-        Mockito.verify(view).fillUpElements(createListOfAskElements(query, 2).sortedBy { it.id })
-        presenter.loadResults(query)
-        Mockito.verify(model).getAskResult(query, 2)
 
     }
 
@@ -58,7 +61,6 @@ class AskPresenterTest : UnitTest() {
     fun testHandleError() {
         val query = "pig"
         val throws = RuntimeException()
-
         Mockito.`when`(model.getAskResult(Mockito.anyString(), Mockito.anyInt())).thenReturn(Observable.error(throws))
         presenter.loadResults(query)
         Mockito.verify(view).handleError(throws)
