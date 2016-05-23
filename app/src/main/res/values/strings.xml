@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GithubApiRequester</string>
+    <string name="hintInput">Here put your search text</string>
 </resources>
