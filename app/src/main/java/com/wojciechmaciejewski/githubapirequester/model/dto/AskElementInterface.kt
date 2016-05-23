@@ -7,7 +7,7 @@ import android.support.annotation.IntDef
  */
 
 
-interface AskElement {
+interface AskElementInterface {
     val id:Long;
     fun returnTitle(): String
     fun returnHomepage(): String

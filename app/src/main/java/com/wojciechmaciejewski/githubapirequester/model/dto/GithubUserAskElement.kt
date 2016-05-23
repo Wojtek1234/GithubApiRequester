@@ -7,7 +7,7 @@ import com.wojciechmaciejewski.githubapirequester.model.network.GithubUser
  */
 
 
-class GithubUserAskElement(val githubUser: GithubUser): AskElementAbstract() {
+class GithubUserAskElement(val githubUser: GithubUser): AskElement() {
     init{
         this.elementType = USER_TYPE
     }

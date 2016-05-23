@@ -7,7 +7,7 @@ import com.wojciechmaciejewski.githubapirequester.model.network.GithubRepo
  */
 
 
-class GithubRepoAskElement(val githubRepo: GithubRepo): AskElementAbstract() {
+class GithubRepoAskElement(val githubRepo: GithubRepo): AskElement() {
 
     init {
         this.elementType = REPO_TYPE

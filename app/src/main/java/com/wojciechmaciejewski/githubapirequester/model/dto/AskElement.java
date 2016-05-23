@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  *
  */
-public abstract class AskElementAbstract implements AskElement {
+public abstract class AskElement implements AskElementInterface {
 
 
     public static final int USER_TYPE = 0;
