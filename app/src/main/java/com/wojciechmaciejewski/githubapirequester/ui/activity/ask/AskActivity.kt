@@ -3,6 +3,9 @@ package com.wojciechmaciejewski.githubapirequester.ui.activity.ask
 
 import android.os.Bundle
 import com.wojciechmaciejewski.githubapirequester.R
+import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
+import com.wojciechmaciejewski.githubapirequester.model.dto.GithubRepoAskElement
+import com.wojciechmaciejewski.githubapirequester.model.network.GithubUser
 
 import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
 
