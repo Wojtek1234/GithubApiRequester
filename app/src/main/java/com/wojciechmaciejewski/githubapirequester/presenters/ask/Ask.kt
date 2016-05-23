@@ -1,7 +1,7 @@
 package com.wojciechmaciejewski.githubapirequester.presenters.ask
 
 import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
-import com.wojciechmaciejewski.githubapirequester.presenters.ClearSubsribtions
+import com.wojciechmaciejewski.githubapirequester.presenters.ClearSubscribtions
 import rx.Observable
 
 /**
@@ -17,7 +17,7 @@ interface Ask {
         fun getAskResult(query: String, page: Int?): Observable<List<AskElement>>
     }
 
-    interface Presenter : ClearSubsribtions {
+    interface Presenter : ClearSubscribtions {
         fun loadResults(query: String)
     }
 }

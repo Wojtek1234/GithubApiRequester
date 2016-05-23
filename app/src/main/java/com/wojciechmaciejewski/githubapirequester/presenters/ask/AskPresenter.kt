@@ -14,7 +14,7 @@ class AskPresenter(val askModel: Ask.Model, val askView: Ask.View, val mySchedul
         throw UnsupportedOperationException()
     }
 
-    override fun clearSubsriptions() {
+    override fun clearSubscriptions() {
         throw UnsupportedOperationException()
     }
 }
