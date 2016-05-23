@@ -29,6 +29,7 @@ class AskPresenterTest : UnitTest() {
     fun testLoadResults() {
         val query = "pig"
         Mockito.`when`(model.getAskResult(query, 1)).thenReturn(Observable.just(createListOfAskElements(query, 2)))
+        Mockito.`when`(model.getAskResult(query, 2)).thenReturn(Observable.just(createListOfAskElements(query, 2)))
 
         presenter.loadResults(query)
         Mockito.verify(view).fillUpElements(createListOfAskElements(query, 2).sortedBy { it.id })
@@ -49,6 +50,19 @@ class AskPresenterTest : UnitTest() {
         presenter.clearSubscriptions()
         subject.onNext(createListOfAskElements(query, 5))
         Mockito.verify(view, Mockito.never()).fillUpElements(createListOfAskElements(query, 5).sortedBy { it.id })
+
+    }
+
+
+    @Test
+    fun testHandleError() {
+        val query = "pig"
+        val throws = RuntimeException()
+
+        Mockito.`when`(model.getAskResult(Mockito.anyString(), Mockito.anyInt())).thenReturn(Observable.error(throws))
+        presenter.loadResults(query)
+        Mockito.verify(view).handleError(throws)
+
 
     }
 }

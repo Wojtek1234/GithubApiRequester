@@ -20,7 +20,7 @@ class AskPresenter(val askModel: Ask.Model, val askView: Ask.View, val mySchedul
                 .subscribeOn(mySchedulers.subscribeSchedulers)
                 .map { it.sortedBy { it.id } }
                 .observeOn(mySchedulers.observScheduler)
-                .subscribe ({}, {})
+                .subscribe ({ askView.fillUpElements(it) }, { askView.handleError(it) })
     }
 
     private fun manageQueryParams(query: String) {
