@@ -1,20 +1,20 @@
 package com.wojciechmaciejewski.githubapirequester.presenters.ask
 
+import pl.stsg.e_learning.helpers.rxSchedulers.MySchedulers
+
 /**
  *
  */
-interface AskPresenter{
 
 
-    interface View{
+class AskPresenter(val askModel: Ask.Model, val askView: Ask.View, val mySchedulers: MySchedulers) : Ask.Presenter {
 
+
+    override fun loadResults(query: String) {
+        throw UnsupportedOperationException()
     }
 
-    interface Model{
-
-    }
-
-    interface Presenter{
-
+    override fun clearSubsriptions() {
+        throw UnsupportedOperationException()
     }
 }
