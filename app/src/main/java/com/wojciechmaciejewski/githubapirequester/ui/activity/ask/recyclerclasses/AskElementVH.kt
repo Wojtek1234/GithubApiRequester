@@ -1,6 +1,5 @@
 package com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,7 +9,7 @@ import kotlinx.android.synthetic.main.askelement_viewholder.view.*
 /**
 
  */
-class AskElementVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class AskElementVH(itemView: View) : BaseViewHolder(itemView) {
     private val imageView: ImageView
     private val titleTextView: TextView
     private val urlTextView: TextView
@@ -23,7 +22,7 @@ class AskElementVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         idTextView = this.itemView.askElementId
     }
 
-    fun bind(askElement: AskElement, click: (Int, id: Long) -> Unit) {
+    override fun bind(askElement: AskElement, click: (Int, id: Long) -> Unit) {
 
         imageView.setImageResource(askElement.returnImageId())
         titleTextView.text = askElement.returnTitle()

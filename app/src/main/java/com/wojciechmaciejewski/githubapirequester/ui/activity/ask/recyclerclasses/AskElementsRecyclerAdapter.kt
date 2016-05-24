@@ -11,7 +11,7 @@ import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
  */
 
 
-class AskElementsRecyclerAdapter : RecyclerView.Adapter<AskElementVH>() {
+class AskElementsRecyclerAdapter : RecyclerView.Adapter<BaseViewHolder>() {
 
     var listOfElements: List<AskElement>
 
@@ -19,19 +19,48 @@ class AskElementsRecyclerAdapter : RecyclerView.Adapter<AskElementVH>() {
         listOfElements = listOf();
     }
 
-    override fun onBindViewHolder(holder: AskElementVH?, position: Int) {
-        holder?.bind(listOfElements[position], { a, b -> })
+    override fun onBindViewHolder(holder: BaseViewHolder?, position: Int) {
+        if (position < itemCount - 1) holder?.bind(listOfElements[position], { a, b -> })
     }
 
-    override fun getItemCount() = listOfElements.size
+    override fun getItemCount() = listOfElements.size + 1
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AskElementVH? {
-        val view = LayoutInflater.from(parent?.context).inflate(R.layout.askelement_viewholder, parent, false)
-        return AskElementVH(view)
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder? {
+        when (viewType) {
+            TYPE_FOOTER -> {
+                val view = LayoutInflater.from(parent?.context).inflate(R.layout.askelement_viewholder, parent, false)
+                return ProgressViewHolder(view)
+            }
+            TYPE_ITEM -> {
+                val view = LayoutInflater.from(parent?.context).inflate(R.layout.askelement_viewholder, parent, false)
+                return AskElementVH(view)
+            }
+            else -> {
+                val view = LayoutInflater.from(parent?.context).inflate(R.layout.askelement_viewholder, parent, false)
+                return AskElementVH(view)
+            }
+        }
     }
 
-    fun addElements(list: List<AskElement>) {
+    fun changeElements(list: List<AskElement>) {
         listOfElements = list;
         this.notifyDataSetChanged()
+    }
+
+    fun addToList(list: List<AskElement>) {
+        listOfElements += list
+        this.notifyItemRangeInserted(itemCount - 1, list.count())
+    }
+
+
+    override fun getItemViewType(position: Int): Int {
+        if (position == itemCount - 1)
+            return TYPE_FOOTER
+        return TYPE_ITEM
+    }
+
+    companion object {
+        private val TYPE_FOOTER = 1;
+        private val TYPE_ITEM = 0;
     }
 }
