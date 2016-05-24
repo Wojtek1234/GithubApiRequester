@@ -8,11 +8,15 @@ import android.support.test.espresso.action.Press;
 import android.support.test.espresso.action.Swipe;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static org.hamcrest.Matchers.allOf;
 
 public class MyViewAction {
 
@@ -84,6 +88,31 @@ public class MyViewAction {
                 }
             }
         };
+    }
+
+    public static class MyScrollrecyclerViewToEnd implements ViewAction {
+
+
+        public MyScrollrecyclerViewToEnd() {
+
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public Matcher<View> getConstraints() {
+            return allOf(isAssignableFrom(RecyclerView.class), isDisplayed());
+        }
+
+        @Override
+        public String getDescription() {
+            return "scroll RecyclerView to end";
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            RecyclerView recyclerView = (RecyclerView) view;
+            ((LinearLayoutManager) (recyclerView.getLayoutManager())).smoothScrollToPosition(recyclerView, null, recyclerView.getAdapter().getItemCount() - 1);
+        }
     }
 
 }

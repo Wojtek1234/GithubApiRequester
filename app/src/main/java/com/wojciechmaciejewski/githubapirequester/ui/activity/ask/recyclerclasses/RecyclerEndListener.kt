@@ -14,8 +14,7 @@ abstract class RecyclerEndListener : RecyclerView.OnScrollListener() {
         super.onScrollStateChanged(recyclerView, newState)
         if (newState == 0 && recyclerView != null) {
             val itemCount = recyclerView.adapter.itemCount
-            val lastVisibleItemPosition: Int
-            lastVisibleItemPosition = getLastVisibleItem(recyclerView)
+            val lastVisibleItemPosition = getLastVisibleItem(recyclerView)
 
             if (itemCount == lastVisibleItemPosition + 1) {
 
@@ -27,9 +26,9 @@ abstract class RecyclerEndListener : RecyclerView.OnScrollListener() {
     private fun getLastVisibleItem(recyclerView: RecyclerView): Int {
         val lastVisibleItemPosition: Int
         try {
-            lastVisibleItemPosition = (recyclerView.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
-        } catch (e: ClassCastException) {
             lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+        } catch (e: ClassCastException) {
+            lastVisibleItemPosition = (recyclerView.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
         }
 
         return lastVisibleItemPosition

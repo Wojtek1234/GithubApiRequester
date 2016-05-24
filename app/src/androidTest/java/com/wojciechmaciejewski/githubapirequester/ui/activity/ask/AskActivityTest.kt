@@ -3,19 +3,14 @@ package com.wojciechmaciejewski.githubapirequester.ui.activity.ask
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
-import android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.wojciechmaciejewski.githubapirequester.R
 import com.wojciechmaciejewski.githubapirequester.createListOfAskElementsIn
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.Ask
-import com.wojciechmaciejewski.githubapirequester.testutils.MyViewAction
 import com.wojciechmaciejewski.githubapirequester.testutils.MyViewMatchers
-import com.wojciechmaciejewski.githubapirequester.testutils.RecyclerViewMatcher
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.AskElementsRecyclerAdapter
-import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.BaseViewHolder
 import kotlinx.android.synthetic.main.activity_ask.*
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -64,22 +59,16 @@ class AskActivityTest {
     }
 
     @Test
-    fun testLoadMoreOnSwipeDown() {
+    fun testSortedWhenAdd() {
         val query = "smok"
-        onView(withId(R.id.titleMessageEditText)).perform(ViewActions.typeText(query))
-        Thread.sleep(sleepTime)//Time need to handler trigger network call
-
-        onView(withId(R.id.askElementRecyclerView)).perform(RecyclerViewActions.scrollToPosition<BaseViewHolder>(NUMBER_OF_ELEMENT * 2))
-        onView(RecyclerViewMatcher(R.id.askElementRecyclerView).atPositionOnView(NUMBER_OF_ELEMENT * 2, R.id.progress_bar)).check(ViewAssertions.matches(isDisplayed()))
-
         testCase = 1
-        onView(withId(R.id.askElementRecyclerView)).perform(MyViewAction.swipeUp())
-        onView(withId(R.id.askElementRecyclerView))
-                .check(ViewAssertions
-                        .matches(MyViewMatchers
-                                .hasRecyclerViewCorrectSize(NUMBER_OF_ELEMENT * 2 + 1 + ADDED_NUMBER * 2)))
+        onView(withId(R.id.titleMessageEditText)).perform(ViewActions.typeText(query))
+
+        Thread.sleep(sleepTime)//Time need to handler trigger network call
         val listOfAdapterElements = (activityRule.activity.askElementRecyclerView.adapter as AskElementsRecyclerAdapter).listOfElements
         assertEquals(listOfAdapterElements, listOfAdapterElements.sortedBy { it.id })//check is sorted, becuase we cant do it in presenter at the moment.
+
+
     }
 
     @Test
@@ -93,6 +82,11 @@ class AskActivityTest {
                         .matches(MyViewMatchers
                                 .hasRecyclerViewCorrectSize(NUMBER_OF_ELEMENT * 2 + 1)))
         onView(withId(R.id.titleMessageEditText)).perform(ViewActions.clearText())
+        Thread.sleep(sleepTime)//Time need to handler trigger network call
+        onView(withId(R.id.askElementRecyclerView))
+                .check(ViewAssertions
+                        .matches(MyViewMatchers
+                                .hasRecyclerViewCorrectSize(1)))
 
     }
 
@@ -100,7 +94,7 @@ class AskActivityTest {
         override fun loadResults(query: String) {
             when (testCase) {
                 0 -> view.fillUpElements(createListOfAskElementsIn(query, NUMBER_OF_ELEMENT))
-                1 -> view.fillUpElements(createListOfAskElementsIn(query, ADDED_NUMBER))
+                1 -> view.addElements(createListOfAskElementsIn(query, ADDED_NUMBER))
             }
         }
 

@@ -28,7 +28,7 @@ class AskElementsRecyclerAdapter : RecyclerView.Adapter<BaseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder? {
         when (viewType) {
             TYPE_FOOTER -> {
-                val view = LayoutInflater.from(parent?.context).inflate(R.layout.askelement_viewholder, parent, false)
+                val view = LayoutInflater.from(parent?.context).inflate(R.layout.progress_bar_viewholder, parent, false)
                 return ProgressViewHolder(view)
             }
             TYPE_ITEM -> {
@@ -49,7 +49,13 @@ class AskElementsRecyclerAdapter : RecyclerView.Adapter<BaseViewHolder>() {
 
     fun addToList(list: List<AskElement>) {
         listOfElements += list
+        listOfElements = listOfElements.sortedBy { it.id }
         this.notifyItemRangeInserted(itemCount - 1, list.count())
+    }
+
+    fun clearList() {
+        listOfElements = listOf()
+        this.notifyDataSetChanged()
     }
 
 
