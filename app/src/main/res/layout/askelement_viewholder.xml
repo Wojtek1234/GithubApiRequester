@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="@dimen/smallMargin"
+    android:layout_marginBottom="@dimen/smallMargin"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/repoUserImageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/askElementTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/repoUserImageView"
-        style="@style/textViewHolderElement" />
+        <ImageView
+            android:id="@+id/repoUserImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true" />
 
-    <TextView
-        android:id="@+id/askElementHomeUrl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/repoUserImageView"
-        android:layout_centerVertical="true"
-        android:layout_below="@id/askElementTitle"
-        style="@style/textViewHolderElement.url" />
+        <TextView
+            android:id="@+id/askElementTitle"
+            style="@style/textViewHolderElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/repoUserImageView" />
 
-    <TextView
-        android:id="@+id/askElementId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/repoUserImageView"
-        android:layout_below="@id/askElementHomeUrl"
-        style="@style/textViewHolderElement.id" />
+        <TextView
+            android:id="@+id/askElementHomeUrl"
+            style="@style/textViewHolderElement.url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/askElementTitle"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/repoUserImageView" />
+
+        <TextView
+            android:id="@+id/askElementId"
+            style="@style/textViewHolderElement.id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/askElementHomeUrl"
+            android:layout_toEndOf="@+id/repoUserImageView" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

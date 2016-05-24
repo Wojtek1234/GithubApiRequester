@@ -27,7 +27,7 @@ class AskElementVH(itemView: View) : BaseViewHolder(itemView) {
         imageView.setImageResource(askElement.returnImageId())
         titleTextView.text = askElement.returnTitle()
         urlTextView.text = askElement.returnHomepage()
-        idTextView.text = "${askElement.id}"
+        idTextView.text = "id: ${askElement.id}"
         this.itemView.setOnClickListener {
             click(askElement.elementType, askElement.id)
         }
