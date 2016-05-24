@@ -79,7 +79,7 @@ class AskActivityTest {
                         .matches(MyViewMatchers
                                 .hasRecyclerViewCorrectSize(NUMBER_OF_ELEMENT * 2 + 1 + ADDED_NUMBER * 2)))
         val listOfAdapterElements = (activityRule.activity.askElementRecyclerView.adapter as AskElementsRecyclerAdapter).listOfElements
-        assertEquals(listOfAdapterElements, listOfAdapterElements.sortedBy { it.id })
+        assertEquals(listOfAdapterElements, listOfAdapterElements.sortedBy { it.id })//check is sorted, becuase we cant do it in presenter at the moment.
     }
 
     @Test
