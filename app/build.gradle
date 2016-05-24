@@ -44,7 +44,7 @@ dependencies {
 
     compile "io.reactivex:rxjava:$rx_java"
     compile "io.reactivex:rxandroid:$rx_android"
-
+    compile 'com.jakewharton.rxbinding:rxbinding-kotlin:0.4.0'
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
 
