@@ -20,7 +20,7 @@ class AskElementsRecyclerAdapter : RecyclerView.Adapter<AskElementVH>() {
     }
 
     override fun onBindViewHolder(holder: AskElementVH?, position: Int) {
-        holder?.bind(listOfElements[position])
+        holder?.bind(listOfElements[position], { a, b -> })
     }
 
     override fun getItemCount() = listOfElements.size
