@@ -1,5 +1,6 @@
 package com.wojciechmaciejewski.githubapirequester.model.dto
 
+import com.wojciechmaciejewski.githubapirequester.R
 import com.wojciechmaciejewski.githubapirequester.model.network.GithubRepo
 
 /**
@@ -8,6 +9,7 @@ import com.wojciechmaciejewski.githubapirequester.model.network.GithubRepo
 
 
 class GithubRepoAskElement(val githubRepo: GithubRepo): AskElement() {
+    override fun returnImageId() = R.drawable.repo_icon
 
     init {
         this.elementType = REPO_TYPE
@@ -17,6 +19,8 @@ class GithubRepoAskElement(val githubRepo: GithubRepo): AskElement() {
     override fun returnTitle()=githubRepo.name
 
     override fun returnHomepage()=githubRepo.homepage
+
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other?.javaClass != javaClass) return false
