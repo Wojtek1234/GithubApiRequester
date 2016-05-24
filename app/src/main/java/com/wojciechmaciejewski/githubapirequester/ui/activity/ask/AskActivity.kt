@@ -9,8 +9,6 @@ import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
 import javax.inject.Inject
 
 class AskActivity : AbstractActivity(), Ask.View {
-
-
     @Inject
     lateinit var presenter: Ask.Presenter
 
@@ -18,6 +16,7 @@ class AskActivity : AbstractActivity(), Ask.View {
     override fun onInitializeInjection() {
         this.dependenciesInjector.inject(this)
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +28,10 @@ class AskActivity : AbstractActivity(), Ask.View {
     }
 
     override fun handleError(error: Throwable) {
+        throw UnsupportedOperationException()
+    }
+
+    override fun addElements(list: List<AskElement>) {
         throw UnsupportedOperationException()
     }
 }

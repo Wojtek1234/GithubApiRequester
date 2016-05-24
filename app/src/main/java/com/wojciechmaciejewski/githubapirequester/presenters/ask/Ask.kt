@@ -12,6 +12,7 @@ interface Ask {
 
     interface View : HandleError {
         fun fillUpElements(list: List<AskElement>)
+        fun addElements(list: List<AskElement>)
     }
 
     interface Model {

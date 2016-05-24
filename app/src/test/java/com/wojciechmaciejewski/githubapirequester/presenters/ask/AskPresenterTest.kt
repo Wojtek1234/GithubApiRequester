@@ -35,7 +35,8 @@ class AskPresenterTest : UnitTest() {
         presenter.loadResults(query)
         presenter.loadResults(query)
         presenter.loadResults(query2)
-        Mockito.verify(view, Mockito.times(2)).fillUpElements(createListOfAskElements(query, 2).sortedBy { it.id })
+        Mockito.verify(view, Mockito.times(1)).fillUpElements(createListOfAskElements(query, 2).sortedBy { it.id })
+        Mockito.verify(view, Mockito.times(1)).addElements(createListOfAskElements(query, 2).sortedBy { it.id })
         Mockito.verify(view, Mockito.times(1)).fillUpElements(createListOfAskElements(query, 3).sortedBy { it.id })
 
 
@@ -53,6 +54,7 @@ class AskPresenterTest : UnitTest() {
         presenter.clearSubscriptions()
         subject.onNext(createListOfAskElements(query, 5))
         Mockito.verify(view, Mockito.never()).fillUpElements(createListOfAskElements(query, 5).sortedBy { it.id })
+        Mockito.verify(view, Mockito.never()).addElements(createListOfAskElements(query, 5).sortedBy { it.id })
 
     }
 
