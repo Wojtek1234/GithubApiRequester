@@ -16,7 +16,7 @@ interface Ask {
     }
 
     interface Model {
-        fun getAskResult(query: String, page: Int?): Observable<List<AskElement>>
+        fun getAskResult(query: String, page: Int): Observable<List<AskElement>>
     }
 
     interface Presenter : ClearSubscribtions {

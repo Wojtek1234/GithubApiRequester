@@ -14,12 +14,13 @@ import javax.inject.Inject
 
 class AskModel : Ask.Model {
     private val githubApi: GithubApi;
-
+    private lateinit var query: String
     @Inject
     constructor(githubApi: GithubApi) {
         this.githubApi = githubApi;
     }
-    override fun getAskResult(query: String, page: Int?): Observable<List<AskElement>> {
+
+    override fun getAskResult(query: String, page: Int): Observable<List<AskElement>> {
         return Observable.combineLatest(githubApi.askForRepos(query, page), githubApi.askForUsers(query, page),
                 {
                     listRepo, listUser ->
