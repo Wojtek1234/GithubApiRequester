@@ -11,7 +11,7 @@ import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
  */
 
 
-class AskElementsRecyclerAdapter : RecyclerView.Adapter<BaseViewHolder>() {
+class AskElementsRecyclerAdapter(val clickFunct: (Int, Long) -> Unit) : RecyclerView.Adapter<BaseViewHolder>() {
 
     var listOfElements: List<AskElement>
 
@@ -20,7 +20,7 @@ class AskElementsRecyclerAdapter : RecyclerView.Adapter<BaseViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder?, position: Int) {
-        if (position < itemCount - 1) holder?.bind(listOfElements[position], { a, b -> })
+        if (position < itemCount - 1) holder?.bind(listOfElements[position], clickFunct)
     }
 
     override fun getItemCount() = listOfElements.size + 1

@@ -1,6 +1,7 @@
 package com.wojciechmaciejewski.githubapirequester.ui.activity.ask
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -13,6 +14,9 @@ import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.AskElementsRecyclerAdapter
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.ProgressViewHolder
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.RecyclerEndListener
+import com.wojciechmaciejewski.githubapirequester.ui.activity.repo_detail.RepoDetailActivity
+import com.wojciechmaciejewski.githubapirequester.ui.activity.user_detail.UserDetailActivity
+import com.wojciechmaciejewski.githubapirequester.utils.ID_KEY
 import kotlinx.android.synthetic.main.activity_ask.*
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -27,7 +31,17 @@ class AskActivity : AbstractActivity(), Ask.View {
     @Inject
     lateinit var presenter: Ask.Presenter
 
-    private val adapter = AskElementsRecyclerAdapter()
+    private val adapter = AskElementsRecyclerAdapter({
+        type, id ->
+        val destClass = when (type) {
+            AskElement.USER_TYPE -> UserDetailActivity::class.java
+            AskElement.REPO_TYPE -> RepoDetailActivity::class.java
+            else -> UserDetailActivity::class.java
+        }
+        val intent = Intent(this, destClass)
+        intent.putExtra(ID_KEY, id)
+        startActivity(intent)
+    })
     private lateinit var subsription: Subscription;
 
     override fun onInitializeInjection() {

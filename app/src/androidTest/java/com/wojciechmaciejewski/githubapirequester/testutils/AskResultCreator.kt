@@ -1,4 +1,4 @@
-package com.wojciechmaciejewski.githubapirequester
+package com.wojciechmaciejewski.githubapirequester.testutils
 
 import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
 import com.wojciechmaciejewski.githubapirequester.model.dto.GithubRepoAskElement
@@ -18,4 +18,17 @@ fun createListOfReposIn(name: String, size: Int) = (0..size - 1).map { GithubRep
 
 fun createListOfAskElementsIn(name: String, size: Int): List<AskElement> {
     return createListOfReposIn(name, size).map { GithubRepoAskElement(it) } + createListOfUserIn(name, size).map { GithubUserAskElement(it) }
+}
+
+fun createListOfAskElementsInOfUser(name: String, size: Int): List<AskElement> {
+    return createListOfUserIn(name, size).map {
+        GithubUserAskElement(it)
+    }
+}
+
+
+fun createListOfAskElementsInOfRepo(name: String, size: Int): List<AskElement> {
+    return createListOfReposIn(name, size).map {
+        GithubRepoAskElement(it)
+    }
 }
