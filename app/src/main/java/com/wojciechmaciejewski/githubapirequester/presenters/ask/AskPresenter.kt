@@ -26,14 +26,13 @@ class AskPresenter(val askModel: Ask.Model, val askView: Ask.View, val mySchedul
                     } else {
                         askView.fillUpElements(it)
                     }
+                    counter++
                 }, { askView.handleError(it) })
     }
 
     private fun manageQueryParams(query: String) {
-        if (currentQuery == query) {
-            counter++
-        } else {
-            currentQuery = query;
+        if (currentQuery != query) {
+            currentQuery = query
             counter = 1
         }
     }

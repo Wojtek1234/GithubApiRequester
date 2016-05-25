@@ -41,7 +41,7 @@ class AskModel : Ask.Model {
         Observable.combineLatest(githubApi.askForRepos(query, page), githubApi.askForUsers(query, page),
                 {
                     listRepo, listUser ->
-                    this.totalCount = TotalCountHolder(query, listRepo.totalCount, listUser.totalCount)
+                    totalCount = TotalCountHolder(query, listRepo.totalCount, listUser.totalCount)
                     listRepo.items.map { GithubRepoAskElement(it) } + listUser.items.map { GithubUserAskElement(it) }
 
                 })
