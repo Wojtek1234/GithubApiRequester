@@ -9,5 +9,5 @@ import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
  */
 abstract class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    abstract fun bind(askElement: AskElement, click: (Int, id: Long) -> Unit)
+    abstract fun bind(askElement: AskElement, click: (Int, String) -> Unit)
 }

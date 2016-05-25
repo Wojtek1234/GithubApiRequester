@@ -11,7 +11,7 @@ import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
  */
 
 
-class AskElementsRecyclerAdapter(val clickFunct: (Int, Long) -> Unit) : RecyclerView.Adapter<BaseViewHolder>() {
+class AskElementsRecyclerAdapter(val clickFunct: (Int, String) -> Unit) : RecyclerView.Adapter<BaseViewHolder>() {
 
     var listOfElements: List<AskElement>
 

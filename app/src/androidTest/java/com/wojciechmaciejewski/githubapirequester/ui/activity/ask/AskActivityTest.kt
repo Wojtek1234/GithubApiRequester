@@ -12,7 +12,6 @@ import com.wojciechmaciejewski.githubapirequester.R
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.Ask
 import com.wojciechmaciejewski.githubapirequester.testutils.MyViewMatchers
 import com.wojciechmaciejewski.githubapirequester.testutils.createListOfAskElementsIn
-import com.wojciechmaciejewski.githubapirequester.testutils.createListOfAskElementsInOfRepo
 import com.wojciechmaciejewski.githubapirequester.testutils.createListOfAskElementsInOfUser
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.AskElementsRecyclerAdapter
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.BaseViewHolder
@@ -95,13 +94,13 @@ class AskActivityTest {
     @Test
     fun testClickAndOpenUserDetail() {
         val query = "smok"
-        testCase = 2
+        testCase = 1
         onView(withId(R.id.titleMessageEditText)).perform(ViewActions.typeText(query))
 
         Thread.sleep(sleepTime)//Time need to handler trigger network call
         onView(withId(R.id.askElementRecyclerView)).perform(
                 RecyclerViewActions.actionOnItemAtPosition<BaseViewHolder>(0, ViewActions.click()))
-        onView(withId(R.id.repoDetailMainLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.userDetailActivityMainLayout)).check(matches(isDisplayed()))
 
     }
 
@@ -110,7 +109,6 @@ class AskActivityTest {
             when (testCase) {
                 0 -> view.fillUpElements(createListOfAskElementsIn(query, NUMBER_OF_ELEMENT))
                 1 -> view.addElements(createListOfAskElementsInOfUser(query, ADDED_NUMBER))
-                2 -> view.addElements(createListOfAskElementsInOfRepo(query, ADDED_NUMBER))
             }
         }
 

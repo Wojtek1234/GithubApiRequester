@@ -14,9 +14,8 @@ import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.AskElementsRecyclerAdapter
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.ProgressViewHolder
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.RecyclerEndListener
-import com.wojciechmaciejewski.githubapirequester.ui.activity.repo_detail.RepoDetailActivity
 import com.wojciechmaciejewski.githubapirequester.ui.activity.user_detail.UserDetailActivity
-import com.wojciechmaciejewski.githubapirequester.utils.ID_KEY
+import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import kotlinx.android.synthetic.main.activity_ask.*
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -28,18 +27,15 @@ class AskActivity : AbstractActivity(), Ask.View {
     companion object {
         var sleepBeforeTriggerApiCall = 500L
     }
+
     @Inject
     lateinit var presenter: Ask.Presenter
 
     private val adapter = AskElementsRecyclerAdapter({
-        type, id ->
-        val destClass = when (type) {
-            AskElement.USER_TYPE -> UserDetailActivity::class.java
-            AskElement.REPO_TYPE -> RepoDetailActivity::class.java
-            else -> UserDetailActivity::class.java
-        }
-        val intent = Intent(this, destClass)
-        intent.putExtra(ID_KEY, id)
+        type, name ->
+
+        val intent = Intent(this, UserDetailActivity::class.java)
+        intent.putExtra(USERNAME_KEY, name)
         startActivity(intent)
     })
     private lateinit var subsription: Subscription;
@@ -104,7 +100,7 @@ class AskActivity : AbstractActivity(), Ask.View {
 
     private fun setVisible(visible: Int) {
         val viewHolder = askElementRecyclerView.findViewHolderForAdapterPosition(adapter.itemCount - 1) as ProgressViewHolder?
-        viewHolder?.setVisable(visible)
+        viewHolder?.setVisability(visible)
         textProgressBar.visibility = visible
     }
 

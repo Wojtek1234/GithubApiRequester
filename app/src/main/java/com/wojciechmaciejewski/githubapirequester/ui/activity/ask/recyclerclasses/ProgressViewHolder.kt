@@ -15,11 +15,12 @@ class ProgressViewHolder(view: View) : BaseViewHolder(view) {
     init {
         progressBar = view.progress_bar;
     }
-    override fun bind(askElement: AskElement, click: (Int, Long) -> Unit) {
+
+    override fun bind(askElement: AskElement, click: (Int, String) -> Unit) {
         throw UnsupportedOperationException()
     }
 
-    fun setVisable(visable: Int) {
+    fun setVisability(visable: Int) {
         progressBar.visibility = visable
     }
 }

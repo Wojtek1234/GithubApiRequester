@@ -22,14 +22,16 @@ class AskElementVH(itemView: View) : BaseViewHolder(itemView) {
         idTextView = this.itemView.askElementId
     }
 
-    override fun bind(askElement: AskElement, click: (Int, id: Long) -> Unit) {
+    override fun bind(askElement: AskElement, click: (Int, String) -> Unit) {
 
         imageView.setImageResource(askElement.returnImageId())
         titleTextView.text = askElement.returnTitle()
         urlTextView.text = askElement.returnHomepage()
         idTextView.text = "id: ${askElement.id}"
+
         this.itemView.setOnClickListener {
-            click(askElement.elementType, askElement.id)
+            if (askElement.elementType == AskElement.USER_TYPE)
+                click(askElement.elementType, askElement.returnTitle())
         }
 
     }
