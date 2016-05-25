@@ -40,8 +40,8 @@ class AskModelTest : UnitTest() {
         val page = 2
         val repos = createListOfRepos(query, 2)
         val users = createListOfUser(query, 2)
-        Mockito.`when`(githubApi.askForRepos(query, page)).thenReturn(Observable.just(GithubRepoResponse(repos)))
-        Mockito.`when`(githubApi.askForUsers(query, page)).thenReturn(Observable.just(GithubUserResponse(users)))
+        Mockito.`when`(githubApi.askForRepos(query, page)).thenReturn(Observable.just(GithubRepoResponse(repos, 100)))
+        Mockito.`when`(githubApi.askForUsers(query, page)).thenReturn(Observable.just(GithubUserResponse(users, 100)))
         val idList = users.map { it.id } + repos.map { it.id }
         model.getAskResult(query, 2).subscribe {
             askElements ->
