@@ -1,6 +1,7 @@
 package com.wojciechmaciejewski.githubapirequester.ui.activity.ask
 
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import com.wojciechmaciejewski.githubapirequester.ui.activity.user_detail.UserDe
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_IMAGE_KEY
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import kotlinx.android.synthetic.main.activity_ask.*
+import pl.stsg.e_learning.extension.doAfterBeforeLollipop
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
@@ -38,13 +40,24 @@ class AskActivity : AbstractActivity(), Ask.View {
 
     private val adapter by lazy {
         AskElementsRecyclerAdapter({
-            name, imageUrl ->
-            val intent = Intent(this, UserDetailActivity::class.java)
-            intent.putExtra(USERNAME_KEY, name)
-            intent.putExtra(USERNAME_IMAGE_KEY, imageUrl)
-            startActivity(intent)
+            name, imageUrl, pair ->
+            doAfterBeforeLollipop({
+                val options = ActivityOptions.makeSceneTransitionAnimation(this@AskActivity, pair)
+                startActivity(createIntentForUserDetails(imageUrl, name), options.toBundle())
+                Log.e("HERE", "HEERRERE")
+            }, {
+                startActivity(createIntentForUserDetails(imageUrl, name))
+            });
         }, picasso)
     }
+
+    private fun createIntentForUserDetails(imageUrl: String?, name: String): Intent {
+        val intent = Intent(this, UserDetailActivity::class.java)
+        intent.putExtra(USERNAME_KEY, name)
+        intent.putExtra(USERNAME_IMAGE_KEY, imageUrl)
+        return intent
+    }
+
     private lateinit var subsription: Subscription;
 
     override fun onInitializeInjection() {

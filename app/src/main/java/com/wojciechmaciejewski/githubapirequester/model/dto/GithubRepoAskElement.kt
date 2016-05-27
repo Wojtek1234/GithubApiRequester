@@ -1,9 +1,11 @@
 package com.wojciechmaciejewski.githubapirequester.model.dto
 
+import android.view.View
 import com.squareup.picasso.Picasso
 import com.wojciechmaciejewski.githubapirequester.R
 import com.wojciechmaciejewski.githubapirequester.model.network.GithubRepo
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.AskElementVH
+
 
 /**
  *
@@ -11,9 +13,7 @@ import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasse
 
 
 class GithubRepoAskElement(val githubRepo: GithubRepo): AskElement() {
-
-
-    override fun handleViewHolder(baseViewHolder: AskElementVH, picasso: Picasso, click: (String, String?) -> Unit) {
+    override fun handleViewHolder(baseViewHolder: AskElementVH, picasso: Picasso, click: (String, String?, android.util.Pair<View, String>) -> Unit) {
         picasso.load(R.drawable.repo_icon).into(baseViewHolder.imageView)
         baseViewHolder.idTextView.text = "id: ${githubRepo.id}"
         baseViewHolder.titleTextView.text = githubRepo.name

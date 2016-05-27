@@ -21,10 +21,16 @@ fun AppCompatActivity.startActivityFromClass(): (classa: Class<out Activity>) ->
     }
 }
 
-inline fun doAfterLollipop(after: () -> Unit, before: () -> Unit) {
+inline fun doAfterBeforeLollipop(after: () -> Unit, before: () -> Unit) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         after()
     } else {
         before()
+    }
+}
+
+inline fun doAfterLollipop(after: () -> Unit) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        after()
     }
 }

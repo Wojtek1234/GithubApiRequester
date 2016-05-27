@@ -1,7 +1,9 @@
 package com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses
 
 import android.support.v7.widget.RecyclerView
+import android.util.Pair
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.squareup.picasso.Picasso
 import com.wojciechmaciejewski.githubapirequester.R
@@ -12,7 +14,7 @@ import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
  */
 
 
-class AskElementsRecyclerAdapter(val clickFunct: (String, String?) -> Unit, val picasso: Picasso) : RecyclerView.Adapter<BaseViewHolder>() {
+class AskElementsRecyclerAdapter(val clickFunct: (String, String?, Pair<View, String>) -> Unit, val picasso: Picasso) : RecyclerView.Adapter<BaseViewHolder>() {
 
     var listOfElements: List<AskElement>
 
