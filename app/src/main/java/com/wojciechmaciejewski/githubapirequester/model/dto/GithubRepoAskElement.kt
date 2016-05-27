@@ -13,7 +13,7 @@ import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasse
 class GithubRepoAskElement(val githubRepo: GithubRepo): AskElement() {
 
 
-    override fun handleViewHolder(baseViewHolder: AskElementVH, picasso: Picasso, click: (Int, String) -> Unit) {
+    override fun handleViewHolder(baseViewHolder: AskElementVH, picasso: Picasso, click: (String, String?) -> Unit) {
         picasso.load(R.drawable.repo_icon).into(baseViewHolder.imageView)
         baseViewHolder.idTextView.text = "id: ${githubRepo.id}"
         baseViewHolder.titleTextView.text = githubRepo.name

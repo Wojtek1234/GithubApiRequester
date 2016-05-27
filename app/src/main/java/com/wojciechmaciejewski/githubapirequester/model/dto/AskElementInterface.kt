@@ -11,5 +11,5 @@ import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasse
 
 interface AskElementInterface {
     val id:Long;
-    fun handleViewHolder(baseViewHolder: AskElementVH, picasso: Picasso, click: (Int, String) -> Unit)
+    fun handleViewHolder(baseViewHolder: AskElementVH, picasso: Picasso, click: (String, String?) -> Unit)
 }

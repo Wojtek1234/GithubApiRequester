@@ -12,7 +12,7 @@ import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasse
 
 class GithubUserAskElement(val githubUser: GithubUser) : AskElement() {
 
-    override fun handleViewHolder(baseViewHolder: AskElementVH, picasso: Picasso, click: (Int, String) -> Unit) {
+    override fun handleViewHolder(baseViewHolder: AskElementVH, picasso: Picasso, click: (String, String?) -> Unit) {
         baseViewHolder.idTextView.text = "id: ${this.githubUser.id}"
         baseViewHolder.titleTextView.text = this.githubUser.login
         baseViewHolder.urlTextView.text = this.githubUser.homepage
@@ -20,7 +20,7 @@ class GithubUserAskElement(val githubUser: GithubUser) : AskElement() {
                 .placeholder(R.drawable.user_icon)
                 .into(baseViewHolder.imageView)
         baseViewHolder.itemView.setOnClickListener {
-            click(USER_TYPE, githubUser.login)
+            click(githubUser.login, githubUser.imageUrl)
         }
     }
 

@@ -14,7 +14,7 @@ interface UserDetail {
 
     interface View {
         fun fillUpHeaderView()
-        fun fillUpContent(followers: List<GithubUser>)
+        fun fillUpFollowers(followers: List<GithubUser>)
     }
 
     interface Model {

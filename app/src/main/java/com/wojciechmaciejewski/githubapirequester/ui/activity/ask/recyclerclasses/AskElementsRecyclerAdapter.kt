@@ -12,7 +12,7 @@ import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
  */
 
 
-class AskElementsRecyclerAdapter(val clickFunct: (Int, String) -> Unit, val picasso: Picasso) : RecyclerView.Adapter<BaseViewHolder>() {
+class AskElementsRecyclerAdapter(val clickFunct: (String, String?) -> Unit, val picasso: Picasso) : RecyclerView.Adapter<BaseViewHolder>() {
 
     var listOfElements: List<AskElement>
 

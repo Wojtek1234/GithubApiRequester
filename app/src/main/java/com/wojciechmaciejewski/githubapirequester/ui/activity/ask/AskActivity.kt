@@ -16,6 +16,7 @@ import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasse
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.ProgressViewHolder
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.RecyclerEndListener
 import com.wojciechmaciejewski.githubapirequester.ui.activity.user_detail.UserDetailActivity
+import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_IMAGE_KEY
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import kotlinx.android.synthetic.main.activity_ask.*
 import rx.Subscription
@@ -37,10 +38,10 @@ class AskActivity : AbstractActivity(), Ask.View {
 
     private val adapter by lazy {
         AskElementsRecyclerAdapter({
-            type, name ->
-
+            name, imageUrl ->
             val intent = Intent(this, UserDetailActivity::class.java)
             intent.putExtra(USERNAME_KEY, name)
+            intent.putExtra(USERNAME_IMAGE_KEY, imageUrl)
             startActivity(intent)
         }, picasso)
     }
