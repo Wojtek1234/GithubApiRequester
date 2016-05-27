@@ -6,8 +6,10 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.wojciechmaciejewski.githubapirequester.R
+import com.wojciechmaciejewski.githubapirequester.model.network.GithubUser
+import com.wojciechmaciejewski.githubapirequester.presenters.user_details.UserDetail
 
-class UserDetailActivity : AppCompatActivity() {
+class UserDetailActivity : AppCompatActivity(), UserDetail.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,5 +18,13 @@ class UserDetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val fab = findViewById(R.id.fab) as FloatingActionButton?
         fab!!.setOnClickListener { view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show() }
+    }
+
+    override fun fillUpHeaderView() {
+        throw UnsupportedOperationException()
+    }
+
+    override fun fillUpFollowers(followers: List<GithubUser>) {
+        throw UnsupportedOperationException()
     }
 }
