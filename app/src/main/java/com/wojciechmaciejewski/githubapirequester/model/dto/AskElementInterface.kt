@@ -1,5 +1,7 @@
 package com.wojciechmaciejewski.githubapirequester.model.dto
 
+import com.squareup.picasso.Picasso
+import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.AskElementVH
 
 
 /**
@@ -9,7 +11,5 @@ package com.wojciechmaciejewski.githubapirequester.model.dto
 
 interface AskElementInterface {
     val id:Long;
-    fun returnTitle(): String
-    fun returnHomepage(): String
-    fun returnImageId(): Int
+    fun handleViewHolder(baseViewHolder: AskElementVH, picasso: Picasso, click: (Int, String) -> Unit)
 }

@@ -3,6 +3,7 @@ package com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclass
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.squareup.picasso.Picasso
 import com.wojciechmaciejewski.githubapirequester.R
 import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
 
@@ -11,7 +12,7 @@ import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
  */
 
 
-class AskElementsRecyclerAdapter(val clickFunct: (Int, String) -> Unit) : RecyclerView.Adapter<BaseViewHolder>() {
+class AskElementsRecyclerAdapter(val clickFunct: (Int, String) -> Unit, val picasso: Picasso) : RecyclerView.Adapter<BaseViewHolder>() {
 
     var listOfElements: List<AskElement>
 
@@ -20,7 +21,10 @@ class AskElementsRecyclerAdapter(val clickFunct: (Int, String) -> Unit) : Recycl
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder?, position: Int) {
-        if (position < itemCount - 1) holder?.bind(listOfElements[position], clickFunct)
+        if (position < itemCount - 1) {
+            listOfElements[position].handleViewHolder(holder as AskElementVH, picasso, clickFunct)
+        }
+
     }
 
     override fun getItemCount() = listOfElements.size + 1

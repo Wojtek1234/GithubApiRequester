@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.jakewharton.rxbinding.widget.RxTextView
+import com.squareup.picasso.Picasso
 import com.wojciechmaciejewski.githubapirequester.R
 import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.Ask
@@ -31,13 +32,18 @@ class AskActivity : AbstractActivity(), Ask.View {
     @Inject
     lateinit var presenter: Ask.Presenter
 
-    private val adapter = AskElementsRecyclerAdapter({
-        type, name ->
+    @Inject
+    lateinit var picasso: Picasso
 
-        val intent = Intent(this, UserDetailActivity::class.java)
-        intent.putExtra(USERNAME_KEY, name)
-        startActivity(intent)
-    })
+    private val adapter by lazy {
+        AskElementsRecyclerAdapter({
+            type, name ->
+
+            val intent = Intent(this, UserDetailActivity::class.java)
+            intent.putExtra(USERNAME_KEY, name)
+            startActivity(intent)
+        }, picasso)
+    }
     private lateinit var subsription: Subscription;
 
     override fun onInitializeInjection() {

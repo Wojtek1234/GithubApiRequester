@@ -11,7 +11,7 @@ import com.wojciechmaciejewski.githubapirequester.model.network.GithubUser
  */
 
 
-fun createListOfUser(name: String, size: Int) = (0..size - 1).map { GithubUser(it, "$name $it", "http//:$name") }
+fun createListOfUser(name: String, size: Int) = (0..size - 1).map { GithubUser(it, "$name $it", "http//:$name", "url") }
 
 fun createListOfRepos(name: String, size: Int) = (0..size - 1).map { GithubRepo(it + 100, "$name $it", "http//:$name", createListOfUser("$name $it", 1)[0]) }
 
