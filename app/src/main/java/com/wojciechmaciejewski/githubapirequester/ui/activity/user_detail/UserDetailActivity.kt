@@ -26,9 +26,10 @@ import javax.inject.Inject
 
 class UserDetailActivity : AbstractActivity(), UserDetail.View {
     @Inject lateinit var picasso: Picasso
-    @Inject lateinit var presenter: UserDetail.Presenter
 
+    @Inject lateinit var presenter: UserDetail.Presenter
     private lateinit var userName: String
+
     private lateinit var userImageUrl: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,11 +50,9 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
         userName = intent.getStringExtra(USERNAME_KEY)
         loadPicture(userImageUrl)
     }
-
     override fun onInitializeInjection() {
         this.dependenciesInjector.inject(this)
     }
-
 
     override fun fillUpHeaderView(userDetail: GithubUserDetail) {
         userDetailNameText.text = userDetail.name
@@ -65,6 +64,7 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
 
 
     }
+
 
     override fun fillUpFollowers(followers: List<GithubUser>) {
         followers.forEach {
@@ -80,6 +80,10 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
         (view.findViewById(R.id.askElementTitle) as TextView).text = it.login
         picasso.load(it.imageUrl).placeholder(R.drawable.user_icon)
                 .into(view.findViewById(R.id.repoUserImageView) as ImageView)
+    }
+
+    override fun handleError(error: Throwable) {
+
     }
 
     private fun loadPicture(url: String) {

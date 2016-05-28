@@ -28,6 +28,11 @@ public class RuntimeUserDetailActivityModule implements UserDetailModule {
         return new UserDetail.Presenter() {
 
             @Override
+            public void clearSubscriptions() {
+
+            }
+
+            @Override
             public void loadUserData(@NotNull String userName) {
 
             }

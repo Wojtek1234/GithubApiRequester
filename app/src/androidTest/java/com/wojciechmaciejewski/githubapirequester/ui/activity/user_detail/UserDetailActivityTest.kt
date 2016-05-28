@@ -21,6 +21,7 @@ import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.*
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -48,6 +49,7 @@ class UserDetailActivityTest {
         val following = 127
         var testCase = 0
         val numberOfGithubUsers = 10
+        var cleared = false
     }
 
     val userName = "my_user"
@@ -90,8 +92,13 @@ class UserDetailActivityTest {
         listOfUsers.forEach {
             onView(allOf(withId(R.id.askElementTitle), hasSibling(withText(it.login)))).check(ViewAssertions.matches(not(doesNotExist())))
         }
+    }
 
-
+    @Test
+    fun clearSubsriptionONDestroy() {
+        startActivity()
+        activityRule.activity.finish()
+        assertTrue(cleared)
     }
 
     private fun startActivity() {
@@ -102,6 +109,9 @@ class UserDetailActivityTest {
     }
 
     class TestUserDetailPresenter(val view: UserDetail.View) : UserDetail.Presenter {
+        override fun clearSubscriptions() {
+            cleared = true
+        }
 
 
         override fun loadUserData(userName: String) {
