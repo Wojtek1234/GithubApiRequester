@@ -42,7 +42,7 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
 
         presenter.loadUserData(userName)
         val fab = findViewById(R.id.fab) as FloatingActionButton?
-        fab!!.setOnClickListener { view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show() }
+        fab!!.setOnClickListener { view -> Snackbar.make(view, "Authentication is not yet implemented", Snackbar.LENGTH_LONG).setAction("Action", null).show() }
     }
     private fun handleImageTransition() {
         doAfterLollipop { postponeEnterTransition() }
