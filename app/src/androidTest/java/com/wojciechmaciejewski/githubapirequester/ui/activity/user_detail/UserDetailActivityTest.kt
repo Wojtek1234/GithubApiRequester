@@ -56,7 +56,7 @@ class UserDetailActivityTest {
     val userImageUrl = "user_image_url"
     @Before
     fun setUp() {
-
+        cleared = false
 
         testCase = 0
 

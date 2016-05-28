@@ -54,6 +54,11 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
         this.dependenciesInjector.inject(this)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.clearSubscriptions()
+    }
+
     override fun fillUpHeaderView(userDetail: GithubUserDetail) {
         userDetailNameText.text = userDetail.name
         userDetailLocationText.text = userDetail.location
