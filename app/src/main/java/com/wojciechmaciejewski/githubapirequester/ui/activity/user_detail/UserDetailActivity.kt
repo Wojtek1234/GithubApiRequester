@@ -17,12 +17,13 @@ import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_IMAGE_KEY
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import kotlinx.android.synthetic.main.activity_user_detail.*
+import kotlinx.android.synthetic.main.content_user_detail.*
 import pl.stsg.e_learning.extension.doAfterLollipop
 import javax.inject.Inject
 
 class UserDetailActivity : AbstractActivity(), UserDetail.View {
     @Inject lateinit var picasso: Picasso
-
+    @Inject lateinit var presenter: UserDetail.Presenter
 
     private lateinit var userName: String
     private lateinit var userImageUrl: String
@@ -35,7 +36,7 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
         collapsingToolbarLayout.title = userName;
         collapsingToolbarLayout.setExpandedTitleColor(resources.getColor(android.R.color.transparent, null));
 
-
+        presenter.loadUserData(userName)
         val fab = findViewById(R.id.fab) as FloatingActionButton?
         fab!!.setOnClickListener { view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show() }
     }
@@ -52,7 +53,14 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
 
 
     override fun fillUpHeaderView(userDetail: GithubUserDetail) {
-        throw UnsupportedOperationException()
+        userDetailNameText.text = userDetail.name
+        userDetailLocationText.text = userDetail.location
+        userDetailEmailText.text = userDetail.email
+        userDetailPublicReposText.text = "${userDetail.publicReposNumber}"
+        userDetailFollowersText.text = "${userDetail.followers}"
+        userDetailFollowingText.text = "${userDetail.following}"
+
+
     }
 
     override fun fillUpFollowers(followers: List<GithubUser>) {

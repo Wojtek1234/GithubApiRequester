@@ -50,22 +50,22 @@ class UserDetailActivityTest {
     @Before
     fun setUp() {
 
-        val intent = Intent()
-        intent.putExtra(USERNAME_KEY, userName)
-        intent.putExtra(USERNAME_IMAGE_KEY, userImageUrl)
-        activityRule.launchActivity(intent)
-        testCase++
+
+        testCase = 0
 
     }
 
     @Test
     fun testSetUpCorrectThingsFromIntent() {
+        startActivity()
         matchToolbarTitle(userName)
 
     }
 
     @Test
     fun testFillUpUserDetailData() {
+        testCase = 1
+        startActivity()
         onView(withId(R.id.userDetailNameText)).check(matches(withText(name)))
         onView(withId(R.id.userDetailLocationText)).check(matches(withText(location)))
         onView(withId(R.id.userDetailEmailText)).check(matches(withText(email)))
@@ -73,6 +73,13 @@ class UserDetailActivityTest {
         onView(withId(R.id.userDetailFollowersText)).check(matches(withText(followers)))
         onView(withId(R.id.userDetailFollowingText)).check(matches(withText(following)))
 
+    }
+
+    private fun startActivity() {
+        val intent = Intent()
+        intent.putExtra(USERNAME_KEY, userName)
+        intent.putExtra(USERNAME_IMAGE_KEY, userImageUrl)
+        activityRule.launchActivity(intent)
     }
 
     class TestUserDetailPresenter(val view: UserDetail.View) : UserDetail.Presenter {
