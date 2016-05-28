@@ -1,12 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/userDetailScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/userDetailRecyclerView"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.wojciechmaciejewski.githubapirequester.ui.activity.user_detail.UserDetailActivity"
     tools:showIn="@layout/activity_user_detail">
 
-</android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userDetailNameLabel"
+                style="@style/userDetailTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userDetailNameLabel" />
+
+            <TextView
+                android:id="@+id/userDetailNameText"
+                style="@style/userDetailTextViewStyle.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userDetailEmailLabel"
+                style="@style/userDetailTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userDetailEmailLabel" />
+
+            <TextView
+                android:id="@+id/userDetailEmailText"
+                style="@style/userDetailTextViewStyle.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userDetailLocationLabel"
+                style="@style/userDetailTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userDetailLocatonLabel" />
+
+            <TextView
+                android:id="@+id/userDetailLocationText"
+                style="@style/userDetailTextViewStyle.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userDetaiPublicReposLabel"
+                style="@style/userDetailTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userDetailPublicReposLabel" />
+
+            <TextView
+                android:id="@+id/userDetailPublicReposText"
+                style="@style/userDetailTextViewStyle.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userDetailFollowersLabel"
+                style="@style/userDetailTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userDetailFollowersLabel" />
+
+            <TextView
+                android:id="@+id/userDetailFollowersText"
+                style="@style/userDetailTextViewStyle.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userDetailFollowingLabel"
+                style="@style/userDetailTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userDetailFollowingLabel" />
+
+            <TextView
+                android:id="@+id/userDetailFollowingText"
+                style="@style/userDetailTextViewStyle.text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/userDetailTextViewStyle"
+            android:text="@string/userDetailFollowersList" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/smallMargin"
+            android:id="@+id/linearForFollowers">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

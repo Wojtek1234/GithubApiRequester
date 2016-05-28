@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="userDetailNameLabel">name: </string>
+    <string name="userDetailEmailLabel">e-mail: </string>
+    <string name="userDetailLocatonLabel">location: </string>
+    <string name="userDetailPublicReposLabel">number of public repos: </string>
+    <string name="userDetailFollowersLabel">followers number: </string>
+    <string name="userDetailFollowingLabel">following number: </string>
+    <string name="userDetailFollowersList">Followers (max 30): </string>
+
+</resources>

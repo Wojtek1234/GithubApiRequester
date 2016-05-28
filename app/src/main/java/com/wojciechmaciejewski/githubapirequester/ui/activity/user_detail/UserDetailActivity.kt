@@ -1,8 +1,11 @@
 package com.wojciechmaciejewski.githubapirequester.ui.activity.user_detail
 
+import android.content.res.ColorStateList
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
+import android.support.v7.graphics.Palette
 import android.support.v7.widget.Toolbar
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -59,12 +62,32 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
         picasso.load(url)
                 .into(userImageView, object : Callback {
                     override fun onSuccess() {
-                        doAfterLollipop({ startPostponedEnterTransition() })
+                        val bitmap = (userImageView.drawable as BitmapDrawable).bitmap;
+                        Palette.from(bitmap).generate {
+                            palette ->
+                            setUpColors(palette)
+                            doAfterLollipop({ startPostponedEnterTransition() })
+                        };
+
                     }
+
 
                     override fun onError() {
                         doAfterLollipop({ startPostponedEnterTransition() })
                     }
                 })
     }
+
+    private fun setUpColors(palette: Palette) {
+        val primaryDark = resources.getColor(R.color.colorPrimary, null);
+        val primary = resources.getColor(R.color.colorPrimaryDark, null);
+
+        val lightVibrantColor = palette.getLightVibrantColor(resources.getColor(android.R.color.white, null));
+        val vibrantColor = palette.getVibrantColor(resources.getColor(R.color.colorAccent, null));
+        collapsingToolbarLayout.setContentScrimColor(palette.getMutedColor(primary));
+        collapsingToolbarLayout.setStatusBarScrimColor(palette.getDarkMutedColor(primaryDark));
+        fab.setRippleColor(lightVibrantColor)
+        fab.backgroundTintList = ColorStateList.valueOf(vibrantColor)
+    }
+
 }
