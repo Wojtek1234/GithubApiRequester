@@ -1,5 +1,8 @@
 package com.wojciechmaciejewski.githubapirequester.model.dto
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import com.squareup.picasso.Picasso
 import com.wojciechmaciejewski.githubapirequester.R
@@ -18,6 +21,10 @@ class GithubRepoAskElement(val githubRepo: GithubRepo): AskElement() {
         baseViewHolder.idTextView.text = "id: ${githubRepo.id}"
         baseViewHolder.titleTextView.text = githubRepo.name
         baseViewHolder.urlTextView.text = githubRepo.homepage
+        baseViewHolder.itemView.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(githubRepo.homepage));
+            (baseViewHolder.itemView.context as Activity).startActivity(browserIntent);
+        }
     }
 
 
