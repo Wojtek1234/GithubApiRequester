@@ -38,6 +38,10 @@ class AskActivity : AbstractActivity(), Ask.View {
     @Inject
     lateinit var picasso: Picasso
 
+
+    var loadingFromText = false;
+
+
     private val adapter by lazy {
         AskElementsRecyclerAdapter({
             name, imageUrl, pair ->
@@ -79,6 +83,7 @@ class AskActivity : AbstractActivity(), Ask.View {
         if (it.length != 0) {
             titleMessageEditText.isEnabled = false
             textProgressBar.visibility = View.VISIBLE
+            loadingFromText = true
             presenter.loadResults(it.toString())
         } else adapter.clearList()
     }
@@ -88,13 +93,16 @@ class AskActivity : AbstractActivity(), Ask.View {
         askElementRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         askElementRecyclerView.addOnScrollListener(object : RecyclerEndListener() {
             override fun onLoadMore() {
-                showProgressBars()
-                presenter.loadResults(titleMessageEditText.text.toString())
+                if (!loadingFromText) {
+                    showProgressBars()
+                    presenter.loadResults(titleMessageEditText.text.toString())
+                }
             }
         })
     }
 
     override fun fillUpElements(list: List<AskElement>) {
+        loadingFromText = false
         hideProgressBars()
         adapter.changeElements(list)
     }
