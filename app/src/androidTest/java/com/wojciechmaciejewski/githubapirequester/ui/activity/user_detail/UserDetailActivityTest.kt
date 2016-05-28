@@ -4,19 +4,23 @@ import android.content.Intent
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.ViewInteraction
+import android.support.test.espresso.assertion.ViewAssertions
+import android.support.test.espresso.assertion.ViewAssertions.doesNotExist
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.BoundedMatcher
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.wojciechmaciejewski.githubapirequester.R
+import com.wojciechmaciejewski.githubapirequester.model.network.GithubUser
 import com.wojciechmaciejewski.githubapirequester.model.network.GithubUserDetail
 import com.wojciechmaciejewski.githubapirequester.presenters.user_details.UserDetail
+import com.wojciechmaciejewski.githubapirequester.testutils.MyViewMatchers
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_IMAGE_KEY
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -43,6 +47,7 @@ class UserDetailActivityTest {
         val followers = 25
         val following = 127
         var testCase = 0
+        val numberOfGithubUsers = 10
     }
 
     val userName = "my_user"
@@ -75,6 +80,20 @@ class UserDetailActivityTest {
 
     }
 
+    @Test
+    fun testFollowersLayout() {
+        testCase = 2
+        startActivity()
+        val listOfUsers = createListOfGithubUsers()
+        onView(withId(R.id.linearForFollowers)).check(matches(MyViewMatchers.isThereCorrectNumberOfChilds(numberOfGithubUsers)))
+
+        listOfUsers.forEach {
+            onView(allOf(withId(R.id.askElementTitle), hasSibling(withText(it.login)))).check(ViewAssertions.matches(not(doesNotExist())))
+        }
+
+
+    }
+
     private fun startActivity() {
         val intent = Intent()
         intent.putExtra(USERNAME_KEY, userName)
@@ -90,10 +109,14 @@ class UserDetailActivityTest {
                 1 -> {
                     view.fillUpHeaderView(GithubUserDetail(1, userName, homepage, imageUrl, false, name, location, email, publicReposNumber, followers, following))
                 }
+                2 -> {
+                    view.fillUpFollowers(createListOfGithubUsers())
+                }
             }
 
         }
     }
+
 
     //Variation about https://github.com/chiuki/espresso-samples/blob/master/toolbar-title/app/src/androidTest/java/com/sqisland/espresso/toolbar_title/MainActivityTest.java
     private fun matchToolbarTitle(title: CharSequence): ViewInteraction {
@@ -113,3 +136,5 @@ class UserDetailActivityTest {
         }
     }
 }
+
+fun createListOfGithubUsers() = (0..UserDetailActivityTest.numberOfGithubUsers - 1).map { GithubUser(it, "login $it", "url $it", "imageurl $it") }

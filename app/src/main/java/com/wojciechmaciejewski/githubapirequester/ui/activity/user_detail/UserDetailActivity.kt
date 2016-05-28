@@ -7,6 +7,9 @@ import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.Toolbar
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.wojciechmaciejewski.githubapirequester.R
@@ -64,7 +67,19 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
     }
 
     override fun fillUpFollowers(followers: List<GithubUser>) {
-        throw UnsupportedOperationException()
+        followers.forEach {
+            val view = layoutInflater.inflate(R.layout.askelement_viewholder, linearForFollowers, false)
+            fillUpLayout(it, view)
+            linearForFollowers.addView(view)
+        }
+    }
+
+    private fun fillUpLayout(it: GithubUser, view: View) {
+        (view.findViewById(R.id.askElementId) as TextView).text = it.id.toString()
+        (view.findViewById(R.id.askElementHomeUrl) as TextView).text = it.homepage
+        (view.findViewById(R.id.askElementTitle) as TextView).text = it.login
+        picasso.load(it.imageUrl).placeholder(R.drawable.user_icon)
+                .into(view.findViewById(R.id.repoUserImageView) as ImageView)
     }
 
     private fun loadPicture(url: String) {
