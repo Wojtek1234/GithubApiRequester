@@ -11,6 +11,7 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.wojciechmaciejewski.githubapirequester.R
 import com.wojciechmaciejewski.githubapirequester.model.network.GithubUser
+import com.wojciechmaciejewski.githubapirequester.model.network.GithubUserDetail
 import com.wojciechmaciejewski.githubapirequester.presenters.user_details.UserDetail
 import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_IMAGE_KEY
@@ -20,9 +21,9 @@ import pl.stsg.e_learning.extension.doAfterLollipop
 import javax.inject.Inject
 
 class UserDetailActivity : AbstractActivity(), UserDetail.View {
-
-
     @Inject lateinit var picasso: Picasso
+
+
     private lateinit var userName: String
     private lateinit var userImageUrl: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,13 +33,12 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
         setSupportActionBar(toolbar)
         handleImageTransition()
         collapsingToolbarLayout.title = userName;
-        collapsingToolbarLayout.setExpandedTitleColor(resources.getColor(android.R.color.transparent));
+        collapsingToolbarLayout.setExpandedTitleColor(resources.getColor(android.R.color.transparent, null));
 
 
         val fab = findViewById(R.id.fab) as FloatingActionButton?
         fab!!.setOnClickListener { view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show() }
     }
-
     private fun handleImageTransition() {
         doAfterLollipop { postponeEnterTransition() }
         userImageUrl = intent.getStringExtra(USERNAME_IMAGE_KEY)
@@ -50,7 +50,8 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
         this.dependenciesInjector.inject(this)
     }
 
-    override fun fillUpHeaderView() {
+
+    override fun fillUpHeaderView(userDetail: GithubUserDetail) {
         throw UnsupportedOperationException()
     }
 

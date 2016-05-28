@@ -13,7 +13,7 @@ interface UserDetail {
     }
 
     interface View {
-        fun fillUpHeaderView()
+        fun fillUpHeaderView(userDetail: GithubUserDetail)
         fun fillUpFollowers(followers: List<GithubUser>)
     }
 
