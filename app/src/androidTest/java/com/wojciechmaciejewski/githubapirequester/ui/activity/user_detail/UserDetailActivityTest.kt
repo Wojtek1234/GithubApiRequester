@@ -69,9 +69,9 @@ class UserDetailActivityTest {
         onView(withId(R.id.userDetailNameText)).check(matches(withText(name)))
         onView(withId(R.id.userDetailLocationText)).check(matches(withText(location)))
         onView(withId(R.id.userDetailEmailText)).check(matches(withText(email)))
-        onView(withId(R.id.userDetailPublicReposText)).check(matches(withText(publicReposNumber)))
-        onView(withId(R.id.userDetailFollowersText)).check(matches(withText(followers)))
-        onView(withId(R.id.userDetailFollowingText)).check(matches(withText(following)))
+        onView(withId(R.id.userDetailPublicReposText)).check(matches(withText("$publicReposNumber")))
+        onView(withId(R.id.userDetailFollowersText)).check(matches(withText("$followers")))
+        onView(withId(R.id.userDetailFollowingText)).check(matches(withText("$following")))
 
     }
 
