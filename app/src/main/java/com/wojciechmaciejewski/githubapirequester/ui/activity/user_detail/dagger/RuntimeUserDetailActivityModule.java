@@ -2,6 +2,9 @@ package com.wojciechmaciejewski.githubapirequester.ui.activity.user_detail.dagge
 
 import com.wojciechmaciejewski.githubapirequester.dagger_configuration.scopes.ActivityScope;
 import com.wojciechmaciejewski.githubapirequester.presenters.user_details.UserDetail;
+import com.wojciechmaciejewski.githubapirequester.presenters.user_details.UserDetailModel;
+import com.wojciechmaciejewski.githubapirequester.presenters.user_details.UserDetailsPresenter;
+import com.wojciechmaciejewski.githubapirequester.utils.MySchedulers;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -24,18 +27,9 @@ public class RuntimeUserDetailActivityModule implements UserDetailModule {
     @Override
     @Provides
     @ActivityScope
-    public UserDetail.Presenter provideUserDetailPresenter() {
-        return new UserDetail.Presenter() {
-
-            @Override
-            public void clearSubscriptions() {
-
-            }
-
-            @Override
-            public void loadUserData(@NotNull String userName) {
-
-            }
-        };
+    public UserDetail.Presenter provideUserDetailPresenter(@NotNull UserDetailModel model, @NotNull MySchedulers mySchedulers) {
+        return new UserDetailsPresenter(model, userDetailView, mySchedulers);
     }
+
+
 }
