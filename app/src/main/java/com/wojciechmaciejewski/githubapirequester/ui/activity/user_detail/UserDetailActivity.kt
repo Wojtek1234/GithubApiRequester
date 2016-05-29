@@ -15,6 +15,7 @@ import android.widget.TextView
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.wojciechmaciejewski.githubapirequester.R
+import com.wojciechmaciejewski.githubapirequester.extensions.doAfterLollipop
 import com.wojciechmaciejewski.githubapirequester.model.network.GithubUser
 import com.wojciechmaciejewski.githubapirequester.model.network.GithubUserDetail
 import com.wojciechmaciejewski.githubapirequester.presenters.user_details.UserDetail
@@ -24,7 +25,6 @@ import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_IMAGE_KEY
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import kotlinx.android.synthetic.main.content_user_detail.*
-import pl.stsg.e_learning.extension.doAfterLollipop
 import javax.inject.Inject
 
 class UserDetailActivity : AbstractActivity(), UserDetail.View {

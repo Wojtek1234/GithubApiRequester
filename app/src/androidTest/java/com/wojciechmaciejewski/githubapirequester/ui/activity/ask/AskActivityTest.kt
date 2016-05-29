@@ -30,7 +30,6 @@ import org.junit.runner.RunWith
 class AskActivityTest {
     @get:Rule val activityRule = ActivityTestRule(AskActivity::class.java
             , true, true)
-    val id = 123
 
     companion object {
         var testCase = 0;

@@ -13,8 +13,7 @@ import javax.inject.Inject
 
 
 class AskModel : Ask.Model {
-    private val githubApi: GithubApi;
-    private lateinit var query: String
+    private val githubApi: GithubApi
     private val numberOfItemsOnPage = 30;
     private var totalCount: TotalCountHolder? = null
     private val mapOfCondition: Map<CountCondition, (Int, String, GithubApi) -> Observable<List<AskElement>>>;

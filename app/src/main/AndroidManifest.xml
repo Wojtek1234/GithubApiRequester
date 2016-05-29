@@ -22,7 +22,6 @@
             android:name=".ui.activity.user_detail.UserDetailActivity"
             android:label="@string/title_activity_user_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.activity.repo_detail.RepoDetailActivity"></activity>
     </application>
 
 </manifest>

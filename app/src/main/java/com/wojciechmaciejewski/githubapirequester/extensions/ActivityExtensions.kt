@@ -1,4 +1,4 @@
-package pl.stsg.e_learning.extension
+package com.wojciechmaciejewski.githubapirequester.extensions
 
 import android.app.Activity
 import android.app.DialogFragment

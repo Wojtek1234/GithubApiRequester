@@ -10,6 +10,7 @@ import android.view.View
 import com.jakewharton.rxbinding.widget.RxTextView
 import com.squareup.picasso.Picasso
 import com.wojciechmaciejewski.githubapirequester.R
+import com.wojciechmaciejewski.githubapirequester.extensions.doAfterBeforeLollipop
 import com.wojciechmaciejewski.githubapirequester.model.dto.AskElement
 import com.wojciechmaciejewski.githubapirequester.presenters.ask.Ask
 import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
@@ -21,7 +22,6 @@ import com.wojciechmaciejewski.githubapirequester.utils.ErrorHandler
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_IMAGE_KEY
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import kotlinx.android.synthetic.main.activity_ask.*
-import pl.stsg.e_learning.extension.doAfterBeforeLollipop
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit

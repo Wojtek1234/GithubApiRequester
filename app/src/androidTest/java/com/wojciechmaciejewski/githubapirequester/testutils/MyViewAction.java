@@ -8,7 +8,6 @@ import android.support.test.espresso.action.Press;
 import android.support.test.espresso.action.Swipe;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -111,7 +110,7 @@ public class MyViewAction {
         @Override
         public void perform(UiController uiController, View view) {
             RecyclerView recyclerView = (RecyclerView) view;
-            ((LinearLayoutManager) (recyclerView.getLayoutManager())).smoothScrollToPosition(recyclerView, null, recyclerView.getAdapter().getItemCount() - 1);
+            recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, recyclerView.getAdapter().getItemCount() - 1);
         }
     }
 
