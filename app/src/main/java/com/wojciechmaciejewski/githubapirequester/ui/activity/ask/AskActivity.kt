@@ -2,6 +2,7 @@ package com.wojciechmaciejewski.githubapirequester.ui.activity.ask
 
 
 import android.app.ActivityOptions
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -109,6 +110,9 @@ class AskActivity : AbstractActivity(), Ask.View {
 
     override fun handleError(error: Throwable) {
         hideProgressBars()
+        val alertDialogBuilder = AlertDialog.Builder(this);
+        val dialog = alertDialogBuilder.setTitle(resources.getString(R.string.error_dialog_tilte)).setMessage(error.message).create()
+        dialog.show()
         Log.e("ERROR", error.message)
     }
 
