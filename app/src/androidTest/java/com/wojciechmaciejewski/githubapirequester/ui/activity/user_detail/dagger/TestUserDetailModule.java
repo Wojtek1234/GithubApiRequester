@@ -13,7 +13,7 @@ import dagger.Provides;
  *
  */
 @Module
-public class TestUserDetailModule implements UserDetailModule {
+public class TestUserDetailModule {
 
     private UserDetail.View view;
 
@@ -22,7 +22,6 @@ public class TestUserDetailModule implements UserDetailModule {
     }
 
     @NotNull
-    @Override
     @Provides
     @TestScope
     public UserDetail.Presenter provideUserDetailPresenter() {

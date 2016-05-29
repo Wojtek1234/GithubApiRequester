@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.squareup.picasso.Picasso;
 import com.wojciechmaciejewski.githubapirequester.network.GithubApi;
+import com.wojciechmaciejewski.githubapirequester.network.GithubUserDetailApi;
 import com.wojciechmaciejewski.githubapirequester.utils.MySchedulers;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,6 +41,13 @@ public class TestApplicationModule {
     @Singleton
     public GithubApi providGithubApi() {
         return Mockito.mock(GithubApi.class);
+    }
+
+    @NotNull
+    @Provides
+    @Singleton
+    public GithubUserDetailApi provideGithubDetailApi() {
+        return Mockito.mock(GithubUserDetailApi.class);
     }
 
     @NonNull
