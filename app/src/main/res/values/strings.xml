@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Github Searcher</string>
+    <string name="app_name">SmartSearch Repos and Proggramers</string>
     <string name="hintInput">Here put your search text</string>
     <string name="title_activity_user_detail">UserDetailActivity</string>
 
