@@ -2,7 +2,6 @@ package com.wojciechmaciejewski.githubapirequester.ui.activity.ask
 
 
 import android.app.ActivityOptions
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -18,6 +17,7 @@ import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasse
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.ProgressViewHolder
 import com.wojciechmaciejewski.githubapirequester.ui.activity.ask.recyclerclasses.RecyclerEndListener
 import com.wojciechmaciejewski.githubapirequester.ui.activity.user_detail.UserDetailActivity
+import com.wojciechmaciejewski.githubapirequester.utils.ErrorHandler
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_IMAGE_KEY
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import kotlinx.android.synthetic.main.activity_ask.*
@@ -110,10 +110,7 @@ class AskActivity : AbstractActivity(), Ask.View {
 
     override fun handleError(error: Throwable) {
         hideProgressBars()
-        val alertDialogBuilder = AlertDialog.Builder(this);
-        val dialog = alertDialogBuilder.setTitle(resources.getString(R.string.error_dialog_tilte)).setMessage(error.message).create()
-        dialog.show()
-        Log.e("ERROR", error.message)
+        ErrorHandler.createErrorDialog(this, error)
     }
 
     override fun addElements(list: List<AskElement>) {

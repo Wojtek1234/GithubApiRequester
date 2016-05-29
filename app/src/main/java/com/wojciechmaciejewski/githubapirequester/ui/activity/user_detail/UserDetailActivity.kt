@@ -17,6 +17,7 @@ import com.wojciechmaciejewski.githubapirequester.model.network.GithubUser
 import com.wojciechmaciejewski.githubapirequester.model.network.GithubUserDetail
 import com.wojciechmaciejewski.githubapirequester.presenters.user_details.UserDetail
 import com.wojciechmaciejewski.githubapirequester.ui.AbstractActivity
+import com.wojciechmaciejewski.githubapirequester.utils.ErrorHandler
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_IMAGE_KEY
 import com.wojciechmaciejewski.githubapirequester.utils.USERNAME_KEY
 import kotlinx.android.synthetic.main.activity_user_detail.*
@@ -89,7 +90,7 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
     }
 
     override fun handleError(error: Throwable) {
-
+        ErrorHandler.createErrorDialog(this, error)
     }
 
     private fun loadPicture(url: String) {
