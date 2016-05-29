@@ -5,6 +5,8 @@ import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.getColor
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.Toolbar
 import android.view.View
@@ -39,7 +41,7 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
         setSupportActionBar(toolbar)
         handleImageTransition()
         collapsingToolbarLayout.title = userName;
-        collapsingToolbarLayout.setExpandedTitleColor(resources.getColor(android.R.color.transparent, null));
+        collapsingToolbarLayout.setExpandedTitleColor(getColor(this, R.color.transparent))
 
         presenter.loadUserData(userName)
         val fab = findViewById(R.id.fab) as FloatingActionButton?
@@ -114,11 +116,11 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
     }
 
     private fun setUpColors(palette: Palette) {
-        val primaryDark = resources.getColor(R.color.colorPrimary, null);
-        val primary = resources.getColor(R.color.colorPrimaryDark, null);
+        val primaryDark = getColor(this, R.color.colorPrimary)
+        val primary = getColor(this, R.color.colorPrimaryDark)
 
-        val lightVibrantColor = palette.getLightVibrantColor(resources.getColor(android.R.color.white, null));
-        val vibrantColor = palette.getVibrantColor(resources.getColor(R.color.colorAccent, null));
+        val lightVibrantColor = palette.getLightVibrantColor(getColor(this, android.R.color.white));
+        val vibrantColor = palette.getVibrantColor(ContextCompat.getColor(this, R.color.colorAccent));
         collapsingToolbarLayout.setContentScrimColor(palette.getMutedColor(primary));
         collapsingToolbarLayout.setStatusBarScrimColor(palette.getDarkMutedColor(primaryDark));
         fab.setRippleColor(lightVibrantColor)
