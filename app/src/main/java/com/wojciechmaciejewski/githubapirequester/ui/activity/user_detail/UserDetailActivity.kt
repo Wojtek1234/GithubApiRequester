@@ -83,6 +83,7 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
         (view.findViewById(R.id.askElementId) as TextView).text = it.id.toString()
         (view.findViewById(R.id.askElementHomeUrl) as TextView).text = it.homepage
         (view.findViewById(R.id.askElementTitle) as TextView).text = it.login
+        doAfterLollipop { view.findViewById(R.id.repoUserImageView).transitionName = "" }
         picasso.load(it.imageUrl).placeholder(R.drawable.user_icon)
                 .into(view.findViewById(R.id.repoUserImageView) as ImageView)
     }
