@@ -29,8 +29,8 @@ android {
         applicationId "com.wojciechmaciejewski.githubapirequester"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3"
         testInstrumentationRunner 'com.wojciechmaciejewski.githubapirequester.AndroidTestRunner'
     }
     buildTypes {
