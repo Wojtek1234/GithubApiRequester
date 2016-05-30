@@ -95,9 +95,9 @@ class AskActivity : AbstractActivity(), Ask.View {
         askElementRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         askElementRecyclerView.addOnScrollListener(object : RecyclerEndListener() {
             override fun onLoadMore() {
-                if (!loadingFromText && !loadingFromScrolling) {
+                if (!loadingFromText && !loadingFromScrolling && adapter.listOfElements.size > 0) {
                     showProgressBars()
-                    loadingFromScrolling = false
+                    loadingFromScrolling = true
                     presenter.loadResults(titleMessageEditText.text.toString())
                 }
             }
