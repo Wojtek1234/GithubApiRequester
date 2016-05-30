@@ -10,7 +10,7 @@ import javax.inject.Inject
 
  */
 open class App : Application() {
-    private lateinit var applicationComponent: RuntimeApplicationComponent
+    private lateinit var applicationComponent: ApplicationComponent
 
     @Inject
     lateinit var depedencyInjector: DepedencyInjector
@@ -22,9 +22,7 @@ open class App : Application() {
 
 
     private fun initializeInjection() {
-        applicationComponent = DaggerRuntimeApplicationComponent.builder()
-                .runtimeApplicationModule(RuntimeApplicationModule(this))
-                .build()
+        applicationComponent = AppInjector.getApplicationComponent(this)
         applicationComponent.inject(this)
     }
 
