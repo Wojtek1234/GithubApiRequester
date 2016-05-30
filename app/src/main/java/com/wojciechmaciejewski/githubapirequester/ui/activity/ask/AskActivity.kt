@@ -41,6 +41,7 @@ class AskActivity : AbstractActivity(), Ask.View {
 
 
     var loadingFromText = false;
+    var loadingFromScrolling = false;
 
 
     private val adapter by lazy {
@@ -94,8 +95,9 @@ class AskActivity : AbstractActivity(), Ask.View {
         askElementRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         askElementRecyclerView.addOnScrollListener(object : RecyclerEndListener() {
             override fun onLoadMore() {
-                if (!loadingFromText) {
+                if (!loadingFromText && !loadingFromScrolling) {
                     showProgressBars()
+                    loadingFromScrolling = false
                     presenter.loadResults(titleMessageEditText.text.toString())
                 }
             }
@@ -109,11 +111,13 @@ class AskActivity : AbstractActivity(), Ask.View {
     }
 
     override fun handleError(error: Throwable) {
+        loadingFromScrolling = false
         hideProgressBars()
         ErrorHandler.createErrorDialog(this, error)
     }
 
     override fun addElements(list: List<AskElement>) {
+        loadingFromScrolling = false
         hideProgressBars()
         adapter.addToList(list)
     }
