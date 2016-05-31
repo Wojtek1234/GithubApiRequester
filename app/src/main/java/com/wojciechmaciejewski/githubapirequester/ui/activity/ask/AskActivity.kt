@@ -5,7 +5,6 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import com.jakewharton.rxbinding.widget.RxTextView
 import com.squareup.picasso.Picasso
@@ -50,7 +49,6 @@ class AskActivity : AbstractActivity(), Ask.View {
             doAfterBeforeLollipop({
                 val options = ActivityOptions.makeSceneTransitionAnimation(this@AskActivity, pair)
                 startActivity(createIntentForUserDetails(imageUrl, name), options.toBundle())
-                Log.e("HERE", "HEERRERE")
             }, {
                 startActivity(createIntentForUserDetails(imageUrl, name))
             });
