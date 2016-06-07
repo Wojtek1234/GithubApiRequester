@@ -81,7 +81,7 @@ class AskActivity : AbstractActivity(), Ask.View {
 
     private fun doOnTextChanged(it: CharSequence) {
         if (it.length != 0) {
-            titleMessageEditText.isEnabled = false
+            presenter.clearSubscriptions()
             textProgressBar.visibility = View.VISIBLE
             loadingFromText = true
             presenter.loadResults(it.toString())
@@ -121,7 +121,6 @@ class AskActivity : AbstractActivity(), Ask.View {
     }
 
     private fun hideProgressBars() {
-        titleMessageEditText.isEnabled = true
         setVisible(View.INVISIBLE)
     }
 

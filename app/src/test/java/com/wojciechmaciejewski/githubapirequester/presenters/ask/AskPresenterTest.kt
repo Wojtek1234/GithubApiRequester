@@ -7,6 +7,7 @@ import com.wojciechmaciejewski.githubapirequester.utils.MySchedulers
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.`when` as mockitoWhen
 import rx.Observable
 import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
@@ -29,7 +30,8 @@ class AskPresenterTest : UnitTest() {
     fun testLoadResults() {
         val query = "pig"
         val query2 = "pig2"
-        Mockito.`when`(model.getAskResult(query, 1)).thenReturn(Observable.just(createListOfAskElements(query, 2)))
+
+        mockitoWhen(model.getAskResult(query, 1)).thenReturn(Observable.just(createListOfAskElements(query, 2)))
         Mockito.`when`(model.getAskResult(query, 2)).thenReturn(Observable.just(createListOfAskElements(query, 2)))
         Mockito.`when`(model.getAskResult(query2, 1)).thenReturn(Observable.just(createListOfAskElements(query, 3)))
         presenter.loadResults(query)

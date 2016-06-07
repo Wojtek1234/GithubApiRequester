@@ -40,7 +40,7 @@ class AskActivityTest {
 
     @Before
     fun setUp() {
-        AskActivity.sleepBeforeTriggerApiCall = 10L
+        AskActivity.sleepBeforeTriggerApiCall = 0L
     }
 
     @After
@@ -64,9 +64,9 @@ class AskActivityTest {
     fun testSortedWhenAdd() {
         val query = "smok"
         testCase = 1
-        onView(withId(R.id.titleMessageEditText)).perform(ViewActions.typeText(query))
+        onView(withId(R.id.titleMessageEditText)).perform(ViewActions.replaceText(query))
 
-        Thread.sleep(sleepTime)//Time need to handler trigger network call
+//        Thread.sleep(sleepTime)//Time need to handler trigger network call
         val listOfAdapterElements = (activityRule.activity.askElementRecyclerView.adapter as AskElementsRecyclerAdapter).listOfElements
         assertEquals(listOfAdapterElements, listOfAdapterElements.sortedBy { it.id })//check is sorted, becuase we cant do it in presenter at the moment.
 

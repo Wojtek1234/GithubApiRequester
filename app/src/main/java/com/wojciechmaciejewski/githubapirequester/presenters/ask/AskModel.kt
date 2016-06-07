@@ -45,6 +45,7 @@ class AskModel : Ask.Model {
 
                 })
     }
+
     private val returnRepo: (page: Int, query: String, githubApi: GithubApi) -> Observable<List<AskElement>> = {
         page, query, githubApi ->
         githubApi.askForRepos(query, page)
@@ -54,6 +55,7 @@ class AskModel : Ask.Model {
 
                 }
     }
+
     private val returnUser: (page: Int, query: String, githubApi: GithubApi) -> Observable<List<AskElement>> = {
         page, query, githubApi ->
         githubApi.askForUsers(query, page)
