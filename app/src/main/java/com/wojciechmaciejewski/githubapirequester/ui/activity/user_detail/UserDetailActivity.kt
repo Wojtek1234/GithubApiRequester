@@ -107,8 +107,6 @@ class UserDetailActivity : AbstractActivity(), UserDetail.View {
                         };
 
                     }
-
-
                     override fun onError() {
                         doAfterLollipop({ startPostponedEnterTransition() })
                     }

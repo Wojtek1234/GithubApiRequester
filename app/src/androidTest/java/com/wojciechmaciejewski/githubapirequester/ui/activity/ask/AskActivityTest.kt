@@ -65,8 +65,6 @@ class AskActivityTest {
         val query = "smok"
         testCase = 1
         onView(withId(R.id.titleMessageEditText)).perform(ViewActions.replaceText(query))
-
-//        Thread.sleep(sleepTime)//Time need to handler trigger network call
         val listOfAdapterElements = (activityRule.activity.askElementRecyclerView.adapter as AskElementsRecyclerAdapter).listOfElements
         assertEquals(listOfAdapterElements, listOfAdapterElements.sortedBy { it.id })//check is sorted, becuase we cant do it in presenter at the moment.
 
